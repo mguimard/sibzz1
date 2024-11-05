@@ -1,0 +1,49 @@
+# Ce playbook blablabla
+
+- hosts: all
+
+  vars:
+    fruits:
+      - bananes
+      - citrons
+      - fraises
+    voiture:
+      modele: twingo
+      marque: renault
+
+
+    
+
+  tasks:
+    # -m package -a "name={{http_server}} state=present enabled=yes"
+
+    - name: Make sure we have a custom motd
+      copy:
+        dest: /etc/motd
+        content: |
+          Hello world
+          Welcome on this server
+      become: true
+      register: retour_module_copy
+
+    - name: Debug des facts
+      debug:
+        msg: "Version du systeme: {{ ansible_distribution_version }}"
+
+
+    - name: Debug de retour_module_copy
+      debug:
+        var: retour_module_copy.checksum
+
+
+    - name: Make sure apache is installed
+      package:
+        name: "{{ http_server }}"
+        state: present
+      become: true
+
+    - name: Make sure apache is started
+      service:
+        name: "{{ http_server }}"
+        state: started
+        enabled: true
