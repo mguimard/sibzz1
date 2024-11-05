@@ -1,0 +1,49 @@
+- hosts: all
+  become: true
+  tasks:
+
+    - name: Gather service facts
+      ansible.builtin.service_facts:
+    
+    - name: Gather packages facts
+      ansible.builtin.package_facts:
+        
+
+    - name: Make sure the motd is on the machine
+      copy:
+        dest: /etc/motd
+        content: |
+          Hello, welcome to {{ ansible_ssh_host }}
+          This server runs {{ ansible_distribution }} {{ ansible_distribution_version }}
+          Have a good stay
+      become: true
+
+    - name: Make sure apache2 is installed 
+      apt:
+        name: apache2
+        state: present
+      become: true
+      when: ansible_os_family == 'Debian'
+
+    - name: Make sure httpd is installed
+      yum: 
+        name: httpd
+        state: present
+      when: ansible_os_family == 'RedHat'
+
+
+    - name: Make sure apache 2 is started
+      service:
+        name: apache2
+        state: started
+        enabled: true
+      when: ansible_os_family == 'Debian'
+
+    - name: Make sure httpd is started
+      service:
+        name: httpd
+        state: started
+        enabled: true
+      when: ansible_os_family == 'RedHat'
+
+    
