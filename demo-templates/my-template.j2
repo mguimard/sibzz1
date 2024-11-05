@@ -1,0 +1,18 @@
+Hello world 
+
+{% if does_not_exist is defined %}
+{{ does_not_exist }}
+{% else %}
+Variable pas trouvée
+{% endif %}
+
+{{ ansible_os_family | upper | lower | capitalize | hash('sha1')  }}
+
+Liste des ip v6 :
+
+{% for ip in ansible_all_ipv6_addresses %}
+{%if does_not_exist is defined %}
+ //....
+{% endif %}
+- {{ ip }}
+{% endfor %}

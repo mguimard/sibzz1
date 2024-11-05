@@ -1,0 +1,15 @@
+- hosts: all
+  tasks:
+    - name: Make sure to place the config...
+      template:
+        src: my-template.j2
+        dest: /etc/my-config
+      become: true
+      register: retour_config
+
+    - name: Make sure apache is restarted when config changes
+      service:
+        name: apache2
+        state: restarted
+      when: retour_config is changed
+      become: true

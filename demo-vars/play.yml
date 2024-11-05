@@ -1,0 +1,11 @@
+- hosts: all
+  tasks:
+    - debug:
+        var: does_not_exist
+    
+    - debug:
+        msg: "Value = {{ does_not_exist }}"
+      when: does_not_exist is defined
+
+    - debug:
+        msg: fin de playbook
