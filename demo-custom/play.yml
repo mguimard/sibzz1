@@ -1,0 +1,7 @@
+- hosts: all
+  tasks:
+    - debug:
+        msg: "{{ 1 | add(1) }}"
+    - name: On s'assure de faire coucou au serveur
+      coucou:
+        message: 'autre valeur'

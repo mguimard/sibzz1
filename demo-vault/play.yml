@@ -1,0 +1,9 @@
+- hosts: all
+  vars_files:
+    - my-file.yml
+  tasks:
+    - debug:
+        msg: "Le mot de passe: {{ password }}"
+    - debug:
+        msg: "Le mot de passe: {{ password2 }}"
+  
