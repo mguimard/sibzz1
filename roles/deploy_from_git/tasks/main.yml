@@ -1,0 +1,12 @@
+---
+# tasks file for deploy_from_git
+- name: Make sure git is installed
+  package:
+    name: git
+    state: present
+
+- name: Make sure the deployment is done
+  git:
+    repo: "{{ deploy_git_repo }}"
+    dest: "{{ deploy_git_dest }}"
+  when: deploy_git_repo and deploy_git_dest

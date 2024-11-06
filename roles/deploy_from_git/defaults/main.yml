@@ -1,0 +1,6 @@
+---
+# defaults file for deploy_from_git
+# The url to deploy, example: https://.....bla.git
+deploy_git_repo:
+# the destination folder on the remote machine, example: /var/www/my-website
+deploy_git_dest:
