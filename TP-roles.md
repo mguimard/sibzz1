@@ -74,4 +74,33 @@ Ecrire la documentation du role dans les fichier `README.md` et les informations
 Lancer le playbook avec toutes les options à YES (extra vars)
 
 
+```
+├── group_vars
+│   ├── centos.yml          # variables groupe debians
+│   └── debians.yml         # variables groupe centos
+├── host_vars
+│   ├── ma_centos_1.yml     # variables hote ma_debian_1
+│   └── ma_debian_1.yml     # variables hote ma_centos_1
+├── play.yml                # Le playbook, appel du role "motd"
+└── roles
+    └── motd  
+        ├── defaults
+        │   └── main.yml    # Les variables par défaut
+        ├── files
+        ├── handlers
+        │   └── main.yml
+        ├── meta
+        │   └── main.yml
+        ├── README.md
+        ├── tasks
+        │   └── main.yml    # Liste des tâches du roles (appel au module template)
+        ├── templates
+        │   └── motd.j2     # Le fichier de template
+        ├── tests
+        │   ├── inventory
+        │   └── test.yml
+        └── vars
+            └── main.yml
+```
+
 
