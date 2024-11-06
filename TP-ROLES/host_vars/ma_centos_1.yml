@@ -1,0 +1,5 @@
+motd_show_welcome: true
+motd_show_os_info: true
+motd_show_interfaces: true
+motd_show_dns: true
+motd_show_partitions: true

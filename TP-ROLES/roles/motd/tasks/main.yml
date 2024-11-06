@@ -1,0 +1,6 @@
+---
+# tasks file for motd
+- name: Make sure the motd is up to date
+  template:
+    src: motd.j2
+    dest: /etc/motd

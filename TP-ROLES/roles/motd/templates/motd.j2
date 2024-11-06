@@ -1,0 +1,24 @@
+{% if motd_show_welcome %}
+Hello world from motd role
+{% endif %}
+{% if motd_show_os_info %}
+System: {{ ansible_distribution }} {{ ansible_distribution_version }}
+{% endif %}
+{% if motd_show_interfaces %}
+Network interfaces :
+{{ ansible_interfaces | sort | join("\n")}}
+{% endif %}
+{% if motd_show_dns %}
+DNS:
+{{ ansible_dns.nameservers | sort | join("\n")}}
+{% endif %}
+{% if motd_show_partitions %}
+Partitions:
+{% for disk, disk_data in ansible_devices.items() %}
+- {{ disk }}
+{% for partition, partition_data in disk_data.partitions.items() %}
+  - {{ partition }}: {{ partition_data.size }}
+{% endfor %}
+{% endfor %}
+{% endif %}
+motd generated on {{ template_run_date }}
